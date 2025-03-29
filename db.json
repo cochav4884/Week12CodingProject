@@ -113,13 +113,6 @@
       "genre": "Adventure"
     },
     {
-      "id": "6ff2",
-      "title": "Forrest Gump",
-      "director": "Robert Zemeckis",
-      "year": "1994",
-      "genre": "Drama"
-    },
-    {
       "id": "61a6",
       "title": "Fight Club",
       "director": "David Fincher",
@@ -657,6 +650,13 @@
       "director": "Alfred Hitchcock",
       "year": "1960",
       "genre": "Thriller"
+    },
+    {
+      "id": "5b25",
+      "title": "Forrest Gump",
+      "director": "Robert Zemeckis",
+      "year": "1994",
+      "genre": "Drama"
     }
   ]
 }

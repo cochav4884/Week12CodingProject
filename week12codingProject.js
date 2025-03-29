@@ -128,3 +128,23 @@ genreSelect.addEventListener('change', filterMovies);
 
 // Initial fetch when the page loads
 fetchMovies();
+
+// Change hover color for the genre dropdown options using JavaScript
+document.addEventListener("DOMContentLoaded", function () {
+    const genreSelect = document.getElementById("genreSelect");
+
+    // Change hover color for dropdown options
+    const options = genreSelect.querySelectorAll("option");
+
+    options.forEach(option => {
+        option.addEventListener("mouseenter", function () {
+            this.style.backgroundColor = "rgb(128, 85, 40)"; // Change background on hover
+            this.style.color = "white"; // Ensure text is visible
+        });
+
+        option.addEventListener("mouseleave", function () {
+            this.style.backgroundColor = ""; // Reset background on hover out
+            this.style.color = ""; // Reset text color
+        });
+    });
+});

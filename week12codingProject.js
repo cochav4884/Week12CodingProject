@@ -17,21 +17,27 @@ const movieList = document.getElementById('movieList');
 // Store fetched movies in a global variable for filtering
 let allMovies = [];
 
-// Function to fetch and display movies from the API
-function fetchMovies() {
-    fetch(API_URL, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY // Add the API key here
+// Function to fetch and display movies from the API (using async/await)
+async function fetchMovies() {
+    try {
+        const response = await fetch(API_URL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': API_KEY // Add the API key here
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch movies');
         }
-    })
-        .then(response => response.json())
-        .then(data => {
-            allMovies = data; // Store fetched movies
-            displayMovies(data); // Display all movies initially
-        })
-        .catch(error => console.error('Error fetching movies:', error));
+
+        const data = await response.json();
+        allMovies = data; // Store fetched movies
+        displayMovies(data); // Display all movies initially
+    } catch (error) {
+        console.error('Error fetching movies:', error);
+    }
 }
 
 // Function to display movies in the list
@@ -54,8 +60,8 @@ function displayMovies(movies) {
     });
 }
 
-// Event listener for the form submission to add a new movie
-movieForm.addEventListener('submit', function (event) {
+// Event listener for the form submission to add a new movie (using async/await)
+movieForm.addEventListener('submit', async function (event) {
     event.preventDefault(); // Prevent default form submission
 
     const newMovie = {
@@ -71,37 +77,49 @@ movieForm.addEventListener('submit', function (event) {
         return;
     }
 
-    fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY // Add the API key here
-        },
-        body: JSON.stringify(newMovie)
-    })
-    .then(response => response.json())
-    .then(data => {
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': API_KEY
+            },
+            body: JSON.stringify(newMovie)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to add movie');
+        }
+
+        const data = await response.json();
         console.log('Movie added:', data);
         fetchMovies(); // Refresh the movie list
         movieForm.reset(); // Clear form inputs
-    })
-    .catch(error => console.error('Error adding movie:', error));
+    } catch (error) {
+        console.error('Error adding movie:', error);
+    }
 });
 
-// Function to delete a movie
-function deleteMovie(movieId) {
-    fetch(`${API_URL}/${movieId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY // Add the API key here
+// Function to delete a movie (using async/await)
+async function deleteMovie(movieId) {
+    try {
+        const response = await fetch(`${API_URL}/${movieId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': API_KEY
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete movie');
         }
-    })
-    .then(() => {
+
         console.log(`Movie with ID ${movieId} deleted`);
         fetchMovies(); // Refresh list after deletion
-    })
-    .catch(error => console.error('Error deleting movie:', error));
+    } catch (error) {
+        console.error('Error deleting movie:', error);
+    }
 }
 
 // Event listener for search input and genre dropdown to filter movies
@@ -128,23 +146,3 @@ genreSelect.addEventListener('change', filterMovies);
 
 // Initial fetch when the page loads
 fetchMovies();
-
-// Change hover color for the genre dropdown options using JavaScript
-document.addEventListener("DOMContentLoaded", function () {
-    const genreSelect = document.getElementById("genreSelect");
-
-    // Change hover color for dropdown options
-    const options = genreSelect.querySelectorAll("option");
-
-    options.forEach(option => {
-        option.addEventListener("mouseenter", function () {
-            this.style.backgroundColor = "rgb(128, 85, 40)"; // Change background on hover
-            this.style.color = "white"; // Ensure text is visible
-        });
-
-        option.addEventListener("mouseleave", function () {
-            this.style.backgroundColor = ""; // Reset background on hover out
-            this.style.color = ""; // Reset text color
-        });
-    });
-});

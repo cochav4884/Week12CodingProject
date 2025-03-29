@@ -30,7 +30,7 @@
 
         <!-- Genre Dropdown with Label -->
         <div class="d-flex flex-column ms-3">
-          <label for="genreSelect" class="form-label mb-1">Select Genre</label>
+          <label for="genreSelect" class="form-label mb-1 text-light">Select Genre</label>
           <select id="genreSelect" class="form-select">
             <!-- This dropdown allows users to filter movies by genre -->
             <option value="">All Genres</option>
@@ -48,7 +48,7 @@
       </div>
 
       <!-- Form to Add Movies -->
-      <div class="card p-4 mt-4 shadow">
+      <div class="card p-4 mt-4 shadow" id="movieFormContainer">
         <h3>Add a New Movie</h3>
         <form id="movieForm">
           <div class="mb-3">
@@ -67,12 +67,12 @@
             <label for="genre" class="form-label">Genre</label>
             <input type="text" id="genre" class="form-control" required />
           </div>
-          <button type="submit" class="btn btn-primary">Add Movie</button>
+          <button type="submit" class="btn">Add Movie</button>
         </form>
       </div>
 
       <!-- Movie List -->
-      <div class="card p-4 mt-4 shadow">
+      <div class="card p-4 mt-4 shadow" id="movieListContainer">
         <h3>Movie Listings</h3>
         <ul id="movieList" class="list-group">
           <!-- Movies will be dynamically added here -->

@@ -1,0 +1,20 @@
+{
+  "name": "week12codingproject",
+  "version": "1.0.0",
+  "description": "\"# Week12CodingProject\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cochav4884/Week12CodingProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cochav4884/Week12CodingProject/issues"
+  },
+  "homepage": "https://github.com/cochav4884/Week12CodingProject#readme"
+}

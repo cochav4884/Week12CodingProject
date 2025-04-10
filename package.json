@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cochav4884/Week12CodingProject/issues"
   },
-  "homepage": "https://github.com/cochav4884/Week12CodingProject#readme"
+  "homepage": "https://github.com/cochav4884/Week12CodingProject#readme",
+  "dependencies": {
+    "week12codingproject": "file:"
+  }
 }
